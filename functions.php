@@ -12,95 +12,8 @@ function my_theme_enqueue_styles() {
     );
 }
 
-/*************************************************fonctions du theme enfant*************************************************/
-/*************************************************                          *************************************************        
-*************************************************                           *************************************************
-*************************************************                           *************************************************/
-
-/*************************************************Category menu*************************************************/
-function showPages(){
-      $args = array(
-            'child_of'     => 0,
-            'sort_order'   => 'ASC',
-            'sort_column'  => 'post_title',
-            'hierarchical' => 1,
-            'exclude'      => array(),
-            'include'      => array(),
-            'meta_key'     => '',
-            'meta_value'   => '',
-            'authors'      => '',
-            'parent'       => -1,
-            'exclude_tree' => array(),
-            'number'       => '',
-            'offset'       => 0,
-            'post_type'    => 'page',
-            'post_status'  => 'publish',
-      );
-      $pages = get_pages( $args );
-      $chaine = "";
-      $chaine .= "<li class='categMenu' id='categ".$value->term_id."'><p>Pages</p>";
-      $chaine .="<ul>";
-
-      foreach($pages as $value){
-            $chaine .= "<li id='post".$value->ID."'><a href='".get_permalink($value->ID)."'>".$value->post_title."</a></li>";	
-      }
-      $chaine .="</ul>";
-      return $chaine;
-  }
-
-  
-function showPost($category){
-    $args = array(
-        'posts_per_page'   => 3,
-        'offset'           => 0,
-        'cat'         => '',
-        'category_name'    => $category,
-        'orderby'          => 'date',
-        'order'            => 'DESC',
-        'include'          => '',
-        'exclude'          => '',
-        'meta_key'         => '',
-        'meta_value'       => '',
-        'post_type'        => 'post',
-        'post_mime_type'   => '',
-        'post_parent'      => '',
-        'author'	   => '',
-        'author_name'	   => '',
-        'post_status'      => 'publish',
-        'suppress_filters' => true,
-        'fields'           => '',
-    );
-    $post = get_posts( $args );
-    $chaine = "";
-
-    foreach($post as $value){
-        $chaine .= "<li id='post".$value->ID."'><a href='".get_permalink($value->ID)."'>".$value->post_title."</a></li>";	
-    }
-    return $chaine;
-}
-
-
-function showCategory(){
-    $chaine = "";
-    $categ = get_categories();
-
-    foreach($categ as $value){
-        $chaine .= "<li class='categMenu' id='categ".$value->term_id."'><p>".$value->name."</p>";
-        $chaine .="<ul>".showPost($value->slug )."</ul></li>";
-    }
-    return $chaine;
-}
-
-
-
-
-
-
 
 /*************************************************surcharge des fonctions du thème parent*************************************************/
-/*************************************************                          *************************************************        
-*************************************************                           *************************************************
-*************************************************                           *************************************************/
 
 
 
@@ -128,47 +41,18 @@ function remove_actions_parent_theme() {//fonction de remove et d'action. Faire 
      add_action('wp_enqueue_scripts', 'styles_mantra_child');
   
 }
- 
+
+/************************************************* AJOUT DE SCRIPT/LIBRAIRIES *************************************************/
 function styles_mantra_child() {
       wp_register_style( 'fontawesome', get_template_directory_uri()."-child/img/fontawesome/css/all.css");
       wp_enqueue_style('fontawesome');
 }
 
 
+require_once(get_template_directory() . "-child/themeChildFunction/menu.php");      //creation menu 
+require_once(get_template_directory() . "-child/themeChildFunction/sidebar.php");      //register sidebar 
 
-/************************************************* SIDEBARS *************************************************/
-add_action( 'widgets_init', 'create_sidebar_video' );
-function create_sidebar_video() {
-      $args = array(
-      'name'          => 'Sidebar Video',
-      'id'            => 'sidebar-video',
-      'description'   => 'The Sidear only for video',
-      'class'         => '',
-      'before_widget' => '<div class="sidebar-video">',
-      'after_widget'  => '</div>',
-      'before_title'  => '<h2 class="widgettitle">',
-      'after_title'   => '</h2>' 
-      );
 
-      register_sidebar( $args );
-}
-
-add_action( 'widgets_init', 'create_sidebar_sound' );
-function create_sidebar_sound() {
-      $args = array(
-      'name'          => 'Sidebar Sound',
-      'id'            => 'sidebar-sound',
-      'description'   => 'The Sidear only for the music',
-      'class'         => '',
-      'before_widget' => '<div class="sidebar-sound">',
-      'after_widget'  => '</div>',
-      'before_title'  => '<h2 class="widgettitle">',
-      'after_title'   => '</h2>' 
-      );
-
-      register_sidebar( $args );
-
-}
 
 /*************************************************change form comment default*************************************************/
 

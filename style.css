@@ -68,6 +68,15 @@ p {
 	z-index: 5;
 	overflow: visible;
 }
+.logo img{
+      transform:scale(1) ; 
+	transition-duration: 2s;
+	transition-duration: 0.4s;
+}
+
+.logo img:hover{
+      transform:scale(1.1) ; 
+}
 
 .logo a{
 	position: relative;
@@ -249,7 +258,7 @@ div.menu{
 	height: 40px;
 	border-radius: 20px;
 	background-color:#1388dc;
-	box-shadow: 1px 1px 10px #1388dc;
+	box-shadow: 1px 1px 15px #1388dc;
 	margin-left:4px;
 	margin-bottom:5px;
 	/*transition initial  bow shadow */
@@ -272,7 +281,7 @@ div.menu{
 	position:absolute;
 	bottom:0;
 	top:0;
-	left: 100%;
+	right: 40px;
 	background-color:#1388dc;
 	box-shadow: 1px 1px 10px #1388dc;
 	padding:5px;
@@ -343,14 +352,20 @@ embed, iframe, object{
 .stop{
       overflow-y: hidden;
 }
+
 .sidebar-sound{ 
       display: none;
       position: fixed;
       bottom:0; 
       z-index: 90;    
       width: 100%;
-      background-color: #222222;
+      background-color: #222222d9;
       border-top: 2px solid #4f4f50
+}
+
+.widget-hidden img{
+      width: 45px;
+      cursor: pointer;
 }
 
 
