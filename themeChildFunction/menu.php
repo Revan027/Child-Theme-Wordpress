@@ -20,7 +20,7 @@ function showPages(){
       );
       $pages = get_pages( $args );
       $chaine = "";
-      $chaine .= "<li class='categMenu' id='categ".$value->term_id."'><p>Pages</p>";
+      $chaine .= "<li class='categMenu' id='menu-page' ><p>Pages</p>";
       $chaine .="<ul>";
 
       foreach($pages as $value){
@@ -63,12 +63,16 @@ function showPost($category){
 
 
 function showCategory(){
-    $chaine = "";
-    $categ = get_categories();
-
-    foreach($categ as $value){
-        $chaine .= "<li class='categMenu' id='categ".$value->term_id."'><p>".$value->name."</p>";
-        $chaine .="<ul>".showPost($value->slug )."</ul></li>";
-    }
-    return $chaine;
-}
+      $chaine = "";
+      $categ  = get_categories(
+            array( 'parent' => 20)
+        );
+      $chaine .= "<li class='categMenu' id='menu-article'><p>Articles</p>";
+      $chaine .="<ul>";
+  
+      foreach($categ as $value){
+          $chaine .= "<li id='post".$value->term_id."'><a href='".get_category_link($value->term_id)."'>".$value->name."</a></li>";	
+      }
+      $chaine .="</ul></li>";
+      return $chaine;
+  }

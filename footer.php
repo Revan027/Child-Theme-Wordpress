@@ -32,7 +32,10 @@
 			<?php copyright_footer();//cryout_footer_hook(); ?>
 			
 		</div><!-- #footer2 -->
-
+            
+            <div id="footer-widget">
+            
+            </div>
 	</footer><!-- #footer -->
 
 </div><!-- #wrapper -->

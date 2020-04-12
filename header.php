@@ -11,7 +11,6 @@
  ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
       <meta http-equiv="Content-Type" content="text/html; charset=<?php bloginfo( 'charset' ); ?>" />
       <?php cryout_seo_hook(); ?>
       <link rel="profile" href="http://gmpg.org/xfn/11" />
