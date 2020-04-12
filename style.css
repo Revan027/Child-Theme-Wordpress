@@ -396,6 +396,11 @@ embed, iframe, object{
 	
 }
 
+.titre-archive{
+      margin-top: 0!important;
+	padding-top: 50px!important;
+}
+
 .titre-categ-home{
 	width: 100%;
 	background-color:white;
@@ -651,7 +656,7 @@ header .titre-categ-home{
 }
 
 article.post {
-      width: 30%!important;
+      width: 100%!important;
       max-width: 360px;
       margin:0 5px 5px 0!important;
 }
@@ -696,6 +701,7 @@ article.post {
 
 .illustration-title{   
     flex-grow: 5;
+    word-break: break-word;
 }
 
 

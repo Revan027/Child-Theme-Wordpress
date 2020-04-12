@@ -12,24 +12,28 @@ foreach ($options as $key => $value) {
      ${"$key"} = $value ;
 } 
 
-?><?php cryout_before_article_hook(); ?>
+?>
+<?php cryout_before_article_hook(); 
 
-	<!-- revan page accueil -->
 
+$postInfo  = get_query_var('postInfo ');//récupère la variable
+
+
+?>
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>	
 		<header class="entry-header">	
                   <div class="post-illustration">
-                        <?php mantra_set_featured_thumb(); ?>
+                        <?php echo get_the_post_thumbnail( $postInfo["ID"], 'medium'); ?>
 
                         <div class="illustration-container">  
-                              <div class="header-author">De <?php the_author(); ?></div>  
+                              <div class="header-author">De <?php echo get_the_author_meta('display_name', $postInfo["post_author"] ) ?></div>  
 
                               <div class="illustration-title">
                                     <div><h5 class="entry-title">
-                                          <a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'mantra' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark">
+                                          <a href="<?php echo get_permalink($postInfo["ID"]) ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'mantra' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark">
                                                 <?php 
                                                       /*************************** TAILLE DU TITRE ******************************/
-                                                      $titre = get_the_title();
+                                                      $titre = $postInfo["post_title"];
                             
                                                       (strlen($titre) >30) ?  $titre = substr($titre,0,30)."..." :  $titre; 
       
@@ -40,8 +44,8 @@ foreach ($options as $key => $value) {
                               </div>
                               
                               <div class="illustration-info">
-                                    <span><i class="fa fa-calendar" aria-hidden="true"></i> <?php echo get_the_date( 'd/m/y'); ?></span>
-                                    <span><i class="fa fa-comment"></i>  <?php echo (get_comments_number()) ?></span>  
+                                    <span><i class="fa fa-calendar" aria-hidden="true"></i> <?php echo  substr($postInfo["post_date"] , 0 , 10)  ?></span>
+                                    <span><i class="fa fa-comment"></i>  <?php echo  $postInfo["comment_count"] ?></span>  
                               </div>
                          </div>              
                   </div>
@@ -63,20 +67,22 @@ foreach ($options as $key => $value) {
 		
 		</header><!-- .entry-header -->
 			<?php cryout_post_before_content_hook();  
-			?><?php if ( is_archive() || is_search() ) : // Display excerpts for archives and search. ?>
-			
-						<?php if ($mantra_excerptarchive != "Full Post" ){ ?>
-						<div class="entry-summary">
-						<?php mantra_set_featured_thumb(); ?>
-						<?php the_excerpt(); ?>
-						</div><!-- .entry-summary -->
-						<?php } else { ?>
-						<div class="entry-content">
-						<?php mantra_set_featured_thumb(); ?>
-						<?php the_content(); ?>
-						<?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'mantra' ) . '</span>', 'after' => '</div>' ) ); ?>
-						</div><!-- .entry-content --> 
-						<?php }   ?>
+                  ?><?php if ( is_archive() || is_search() ) : 
+
+                  /*************************** Contenu à afficher pour les archives/catéogries/recherches ******************************/ 
+                  ?>	
+                        <?php if ($mantra_excerptarchive != "Full Post" ){ ?>
+                        <div class="entry-summary">
+                        <?php //mantra_set_featured_thumb(); ?>
+                        <?php //the_excerpt(); ?>
+                        </div><!-- .entry-summary -->
+                        <?php } else { ?>
+                        <div class="entry-content">
+                        <?php mantra_set_featured_thumb(); ?>
+                        <?php the_content(); ?>
+                        <?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'mantra' ) . '</span>', 'after' => '</div>' ) ); ?>
+                        </div><!-- .entry-content --> 
+                        <?php }   ?>
 			
 		<?php else : 
 				if (is_sticky() && $mantra_excerptsticky == "Full Post")  $sticky_test=1; else $sticky_test=0;

@@ -42,23 +42,24 @@ else:
 </header>
 
 <section id="container">
-      <div id="content" role="main">     
+      <div id="content" role="main">    
             <?php cryout_before_content_hook(); ?>
             <?php if ( have_posts() ) : ?>
 
                   <?php mantra_content_nav( 'nav-above' ); ?>
 
                   <?php 
-                        /********************* AFFICHAGE DES ARTICLES ******************************/
-                        $i = 0;
-                        while ($i<6){
-                              the_post();
-                              get_template_part( 'content/content', get_post_format() );   
-                              $i++; 
-                        }  
-                  ?>
+                        $numberPost =  postHome()[0];
+                        $postInfo = postHome()[1];
 
-                  <?php if($mantra_pagination=="Enable") mantra_pagination(); else mantra_content_nav( 'nav-below' ); ?>
+                        for($i = 0;$i<$numberPost ;$i++){
+                              /********************* AFFICHAGE DES ARTICLES ******************************/     
+
+                              // the_post(); //chargement du contenu d'un article
+                              set_query_var( 'postInfo ',  $postInfo[$i] );//passage de paramètre au template
+                              get_template_part( 'content/content', get_post_format() );                             
+                        }                 
+                  ?>
 
             <?php else : ?>
 

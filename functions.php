@@ -42,6 +42,7 @@ function remove_actions_parent_theme() {//fonction de remove et d'action. Faire 
   
 }
 
+
 /************************************************* AJOUT DE SCRIPT/LIBRAIRIES *************************************************/
 function styles_mantra_child() {
       wp_register_style( 'fontawesome', get_template_directory_uri()."-child/img/fontawesome/css/all.css");
@@ -49,8 +50,10 @@ function styles_mantra_child() {
 }
 
 
+/************************************************* FONCTIONS *************************************************/
 require_once(get_template_directory() . "-child/themeChildFunction/menu.php");      //creation menu 
 require_once(get_template_directory() . "-child/themeChildFunction/sidebar.php");      //register sidebar 
+require_once(get_template_directory() . "-child/themeChildFunction/contents.php");      //contents
 
 
 
@@ -79,7 +82,6 @@ function customizeFormComment($fields){
 }
 
 /*function a(){
-    echo"ddddddddddddddddddddddddddddddddddddd";
 }add_action( 'comment_form_defaults','a' ); ajoute une action lors de l'apelle de comment_form_defaults*/
 add_filter( 'comment_form_defaults','customizeFormComment' );
 
