@@ -642,16 +642,17 @@ header .titre-categ-home{
 }
 
 #content {
-	float:none;
+      float: none;
       display: flex;
-	flex-wrap: wrap;
-	align-items: inherit;	/* met au meme niveau les height des enfants*/
-	background-color: white;
-      width: auto!important;
-      margin:0 auto!important;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: inherit;
+      background-color: white;
+      /* width: 100%!important; */
+      /* margin: 0 auto!important; */
       justify-content: center;
-      padding:10px 20px;
-      max-width: max-content!important;
+      padding: 10px 20px;
+      max-width: none!important;
 	
 }
 
@@ -718,7 +719,23 @@ article.post {
 }
 
 
+/****************************************ARCHIVES*********************************/
+.pagination {
+      justify-content: center;
+      margin: 0 ;
+  }
+  
+  .pagination {
+      justify-content: center;
+      margin: 0 ;
+  }
 
+.desc-categ {
+      font-style: italic;
+      color: #bdb8b8;
+      padding:10px;
+      text-align: center;
+}
 
 /****************************************Footer*********************************/
 #footer{
@@ -805,6 +822,7 @@ article.post {
     align-items: center;
     flex-grow: 12!important;
     justify-content: center;
+    text-align: center;
 }
 
 .entry-meta{
@@ -813,7 +831,7 @@ article.post {
 	flex-basis: 0;
 	display: flex!important;
       justify-content: center;
-	align-items: flex-end;
+	align-items: center;
 	font-family:Arial, Helvetica, sans-serif;
 }
 
@@ -1138,13 +1156,6 @@ ol li:last-child{
 
 
 /****************************************media disposition article*********************************/
-@media  (max-width: 768px) {
-	article.post {
-		width: 80%!important;
-	}
-}
-
-
 
 
 
